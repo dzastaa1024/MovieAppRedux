@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { fetchTopRatedMovies } from "../actions";
+import { fetchTopRatedMovies, fetchPopularMovies } from "../actions";
 
 import Scroll from "../components/Scroll";
 import MovieList from "../components/MovieList";
@@ -9,20 +9,38 @@ import MovieList from "../components/MovieList";
 class MainPage extends Component {
   componentDidMount() {
     this.props.fetchTopRatedMovies();
-    console.log("propsy");
+    this.props.fetchPopularMovies();
   }
 
   render() {
+    const { topRatedMovies, popularMovies } = this.props;
+    console.log("popularMovies", popularMovies);
+    const ratedAndPopularMovies = {
+      topRatedMovies,
+      popularMovies,
+    };
+
+    console.log("propsy", topRatedMovies);
     return (
       <Wrapper>
-        <Scroll>
-          MainPage
-          <MovieList />
-        </Scroll>
+        <MovieList movies={ratedAndPopularMovies} />
       </Wrapper>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log("state", state);
+  return {
+    topRatedMovies: state.topRatedMovies,
+    popularMovies: state.popularMovies,
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchTopRatedMovies,
+  fetchPopularMovies,
+})(MainPage);
 
 export const Wrapper = styled.div`
   padding: 2rem;
@@ -35,12 +53,3 @@ export const Wrapper = styled.div`
 
   border: 1px solid red;
 `;
-
-const mapStateToProps = (state) => {
-  console.log("state", state);
-  return {
-    topRatedMovies: state.topRatedMovies,
-  };
-};
-
-export default connect(mapStateToProps, { fetchTopRatedMovies })(MainPage);
