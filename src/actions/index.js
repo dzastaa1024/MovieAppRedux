@@ -21,3 +21,10 @@ export const fetchMoviesByKeyword = (keyword) => async (dispatch) => {
   const res = await movieDB.get(url);
   dispatch({ type: "FETCH_MoviesByKeyword", payload: res.data.results });
 };
+
+export const fetchMoviesUpcoming = () => async (dispatch) => {
+  const url = `/3/movie/upcoming?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await movieDB.get(url);
+  dispatch({ type: "FETCH_UpcomingMovies", payload: res.data.results });
+};

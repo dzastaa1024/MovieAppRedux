@@ -1,23 +1,39 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { fetchMoviesUpcoming } from "../../actions/index";
 
 import MovieList from "../MovieList";
 import Scroll from "../Scroll";
+import { connect } from "react-redux";
 
-export default class SidebarNews extends Component {
+class SidebarNews extends Component {
+  componentDidMount() {
+    this.props.fetchMoviesUpcoming();
+  }
+
   render() {
+    const { upcomingMovies } = this.props;
+
     return (
       <Wrapper>
         <Scroll>
           <List>
             <Title>Upcoming Movies</Title>
-            <MovieList />
+            <MovieList movies={upcomingMovies} />
           </List>
         </Scroll>
       </Wrapper>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    upcomingMovies: state.upcomingMovies,
+  };
+};
+
+export default connect(mapStateToProps, { fetchMoviesUpcoming })(SidebarNews);
 
 const Wrapper = styled.div`
   border: 1px solid black;
