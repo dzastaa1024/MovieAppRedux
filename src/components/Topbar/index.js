@@ -1,23 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { fetchMoviesByKeyword } from "../../actions";
+import { updateKeyword } from "../../actions";
 import { Link } from "react-router-dom";
 import * as boxiconsSolid from "@styled-icons/boxicons-solid";
 
 import TopBarList from "../TopBarList";
 
 class Topbar extends Component {
-  state = {
-    value: "",
-  };
-
   handleChange = (e) => {
-    this.setState({
-      value: e.target.value,
-    });
-
-    this.props.fetchMoviesByKeyword(e.target.value);
+    this.props.updateKeyword(e.target.value);
   };
 
   render() {
@@ -31,7 +23,7 @@ class Topbar extends Component {
         <MiddleWrapper>
           <Input
             onChange={this.handleChange}
-            value={this.state.value}
+            value={this.props.keyword}
             placeholder="Search any movies or tv shows"
           />
         </MiddleWrapper>
@@ -43,7 +35,15 @@ class Topbar extends Component {
   }
 }
 
-export default connect(null, { fetchMoviesByKeyword })(Topbar);
+const mapStateToProps = (state) => {
+  return {
+    keyword: state.keyword,
+  };
+};
+
+export default connect(mapStateToProps, {
+  updateKeyword,
+})(Topbar);
 
 const Wrapper = styled.div`
   border: 1px solid black;
