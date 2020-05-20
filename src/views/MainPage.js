@@ -14,7 +14,10 @@ class MainPage extends Component {
 
   render() {
     const { topRatedMovies, popularMovies } = this.props;
-    console.log("popularMovies", popularMovies);
+    console.log("this.props.moviesByKeyword", this.props.moviesByKeyword);
+
+    const isMovieBykeyword = this.props.moviesByKeyword.length > 0;
+
     const ratedAndPopularMovies = {
       topRatedMovies,
       popularMovies,
@@ -23,17 +26,23 @@ class MainPage extends Component {
     console.log("propsy", topRatedMovies);
     return (
       <Wrapper>
-        <MovieList movies={ratedAndPopularMovies} />
+        <MovieList
+          movies={
+            isMovieBykeyword
+              ? this.props.moviesByKeyword
+              : ratedAndPopularMovies
+          }
+        />
       </Wrapper>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     topRatedMovies: state.topRatedMovies,
     popularMovies: state.popularMovies,
+    moviesByKeyword: state.moviesByKeyword,
   };
 };
 
@@ -50,6 +59,4 @@ export const Wrapper = styled.div`
   border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
   min-height: 100%;
-
-  border: 1px solid red;
 `;
