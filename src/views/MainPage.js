@@ -14,7 +14,6 @@ class MainPage extends Component {
 
   render() {
     const { topRatedMovies, popularMovies } = this.props;
-    console.log("this.props.moviesByKeyword", this.props.moviesByKeyword);
 
     const isMovieBykeyword = this.props.moviesByKeyword.length > 0;
 

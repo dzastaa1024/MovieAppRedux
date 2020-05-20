@@ -21,7 +21,6 @@ class Topbar extends Component {
   };
 
   render() {
-    console.log("value inputa", this.state.value);
     return (
       <Wrapper>
         <LeftWrapper>

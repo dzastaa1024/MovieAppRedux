@@ -28,7 +28,7 @@ export default class App extends Component {
               </Scroll>
             )}
           />
-          <Route
+          {/* <Route
             path="/movies"
             render={() => (
               <Scroll>
@@ -51,7 +51,7 @@ export default class App extends Component {
                 <WatchPage />
               </Scroll>
             )}
-          />
+          /> */}
         </Router>
         <Scroll>
           <SidebarNews />
