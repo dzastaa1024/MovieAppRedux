@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchTVShowsPopular } from "../actions";
 
 import MovieList from "../components/MovieList";
+import MovieModal from "../components/Modal/MovieModal";
 
 class TVPage extends Component {
   state = {
@@ -34,7 +35,7 @@ class TVPage extends Component {
   }
 
   render() {
-    const { tvShows, keyword } = this.props;
+    const { tvShows, keyword, isModal } = this.props;
     const { filteredTVShows } = this.state;
 
     const movieToRender = keyword ? filteredTVShows : tvShows;
@@ -42,6 +43,7 @@ class TVPage extends Component {
       <Wrapper>
         {keyword && !filteredTVShows.length && <p>0 results</p>}
         <MovieList movies={movieToRender} />
+        {isModal && <MovieModal />}
       </Wrapper>
     );
   }
@@ -51,6 +53,7 @@ const mapStateToProps = (state) => {
   return {
     tvShows: state.tvShows,
     keyword: state.keyword,
+    isModal: state.isModal,
   };
 };
 
