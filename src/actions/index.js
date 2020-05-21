@@ -28,3 +28,17 @@ export const fetchMoviesUpcoming = () => async (dispatch) => {
   const res = await movieDB.get(url);
   dispatch({ type: "FETCH_UpcomingMovies", payload: res.data.results });
 };
+
+export const fetchTVShowsPopular = () => async (dispatch) => {
+  const url = `/3/tv/popular?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await movieDB.get(url);
+  dispatch({ type: "FETCH_TVShowsPopular", payload: res.data.results });
+};
+
+export const updateKeyword = (keyword) => {
+  return {
+    type: "UPDATE_KEYWORD",
+    payload: keyword,
+  };
+};
