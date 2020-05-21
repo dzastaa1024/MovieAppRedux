@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { fetchTopRatedMovies, fetchPopularMovies } from "../actions";
+import {
+  fetchTopRatedMovies,
+  fetchPopularMovies,
+  fetchMoviesByKeyword,
+} from "../actions";
 
-import Scroll from "../components/Scroll";
 import MovieList from "../components/MovieList";
 
 class MainPage extends Component {
   componentDidMount() {
     this.props.fetchTopRatedMovies();
     this.props.fetchPopularMovies();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.keyword !== this.props.keyword) {
+      this.props.fetchMoviesByKeyword(this.props.keyword);
+    }
   }
 
   render() {
@@ -22,7 +31,6 @@ class MainPage extends Component {
       popularMovies,
     };
 
-    console.log("propsy", topRatedMovies);
     return (
       <Wrapper>
         <MovieList
@@ -42,12 +50,14 @@ const mapStateToProps = (state) => {
     topRatedMovies: state.topRatedMovies,
     popularMovies: state.popularMovies,
     moviesByKeyword: state.moviesByKeyword,
+    keyword: state.keyword,
   };
 };
 
 export default connect(mapStateToProps, {
   fetchTopRatedMovies,
   fetchPopularMovies,
+  fetchMoviesByKeyword,
 })(MainPage);
 
 export const Wrapper = styled.div`
