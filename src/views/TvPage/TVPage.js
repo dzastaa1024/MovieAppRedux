@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Wrapper } from "../views/MainPage";
+import { Wrapper } from "./style";
 import { connect } from "react-redux";
-import { fetchTVShowsPopular } from "../actions";
+import { fetchTVShowsPopular } from "../../actions";
 
-import MovieList from "../components/MovieList";
-import MovieModal from "../components/Modal/MovieModal";
+import MovieList from "../../components/MovieList";
+import MovieModal from "../../components/Modal/MovieModal/MovieModal";
 
 class TVPage extends Component {
   state = {

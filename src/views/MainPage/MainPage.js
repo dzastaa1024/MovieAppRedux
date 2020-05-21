@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Wrapper } from "../views/MainPage";
 import { connect } from "react-redux";
-import { fetchPopularMovies, fetchMoviesByKeyword } from "../actions";
+import { Wrapper } from "./style";
+import {
+  fetchTopRatedMovies,
+  fetchPopularMovies,
+  fetchMoviesByKeyword,
+} from "../../actions";
 
-import MovieList from "../components/MovieList";
-import MovieModal from "../components/Modal/MovieModal";
+import MovieList from "../../components/MovieList";
+import MovieModal from "../../components/Modal/MovieModal/MovieModal";
 
-class MoviePage extends Component {
+class MainPage extends Component {
   componentDidMount() {
+    this.props.fetchTopRatedMovies();
     this.props.fetchPopularMovies();
   }
 
@@ -19,15 +23,23 @@ class MoviePage extends Component {
   }
 
   render() {
-    const { popularMovies, isModal } = this.props;
-    console.log("popularMovies", popularMovies);
+    const { topRatedMovies, popularMovies, isModal } = this.props;
 
     const isMovieBykeyword = this.props.moviesByKeyword.length > 0;
+
+    const ratedAndPopularMovies = {
+      topRatedMovies,
+      popularMovies,
+    };
 
     return (
       <Wrapper>
         <MovieList
-          movies={isMovieBykeyword ? this.props.moviesByKeyword : popularMovies}
+          movies={
+            isMovieBykeyword
+              ? this.props.moviesByKeyword
+              : ratedAndPopularMovies
+          }
         />
         {isModal && <MovieModal />}
       </Wrapper>
@@ -37,6 +49,7 @@ class MoviePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    topRatedMovies: state.topRatedMovies,
     popularMovies: state.popularMovies,
     moviesByKeyword: state.moviesByKeyword,
     keyword: state.keyword,
@@ -45,6 +58,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  fetchTopRatedMovies,
   fetchPopularMovies,
   fetchMoviesByKeyword,
-})(MoviePage);
+})(MainPage);

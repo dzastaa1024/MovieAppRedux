@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import { Wrapper, List, Slider, Title } from "./style";
 
 import MovieItem from "../MovieItem";
 
@@ -43,25 +43,3 @@ class MovieList extends Component {
 }
 
 export default MovieList;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const List = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Slider = styled.ul`
-  display: flex;
-  overflow: hidden;
-  overflow-x: scroll;
-`;
-
-const Title = styled.p`
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  color: #fff;
-`;

@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import { Item, Image, Title } from "./style";
 import { connect } from "react-redux";
 import { openModal, selectMovie } from "../../actions";
 
@@ -29,21 +29,3 @@ const MovieItem = ({ movie, openModal, selectMovie }) => {
 };
 
 export default connect(null, { openModal, selectMovie })(MovieItem);
-
-const Item = styled.li`
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 25%;
-  padding: 0 2rem 2rem;
-  cursor: pointer;
-`;
-
-const Image = styled.img`
-  /* width: 100%; */
-`;
-
-const Title = styled.p`
-  font-size: 1.5rem;
-  padding-top: 2rem;
-  color: #fff;
-`;

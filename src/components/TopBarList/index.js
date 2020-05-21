@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Menu, MenuItemNavLink, MenuItem, MenuItemValue } from "./style";
 
 const menuItems = [
   { btnText: "Movies", to: "/movies" },
@@ -27,23 +26,3 @@ export default class TopBarList extends Component {
     );
   }
 }
-
-const Menu = styled.ul`
-  list-style-type: none;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-`;
-
-const MenuItemNavLink = styled(NavLink)`
-  color: grey;
-`;
-
-const MenuItem = styled.li``;
-
-const MenuItemValue = styled.span`
-  &:hover {
-    color: #ecff34;
-  }
-`;
