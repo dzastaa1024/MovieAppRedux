@@ -42,3 +42,22 @@ export const updateKeyword = (keyword) => {
     payload: keyword,
   };
 };
+
+export const openModal = () => {
+  return {
+    type: "OPEN_MODAL",
+  };
+};
+
+export const closeModal = () => {
+  return {
+    type: "CLOSE_MODAL",
+  };
+};
+
+export const selectMovie = (movie) => {
+  return {
+    type: "SELECT_MOVIE",
+    payload: movie,
+  };
+};

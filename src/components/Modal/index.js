@@ -2,11 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-export const Modal = ({ close, modalContent }) => {
+import { connect } from "react-redux";
+import { closeModal } from "../../actions";
+
+const Modal = ({ closeModal, modalContent, s }) => {
   return ReactDOM.createPortal(
-    <Dimmer onClick={close}>
+    <Dimmer onClick={closeModal}>
       <ModalBody onClick={(e) => e.stopPropagation()}>
-        <CloseIcon onClick={close}>x</CloseIcon>
+        <CloseIcon onClick={closeModal}>x</CloseIcon>
         <ModalContent>{modalContent}</ModalContent>
         <ModalAction></ModalAction>
       </ModalBody>
@@ -14,6 +17,8 @@ export const Modal = ({ close, modalContent }) => {
     document.getElementById("modal")
   );
 };
+
+export default connect(null, { closeModal })(Modal);
 
 const Dimmer = styled.div`
   position: fixed;

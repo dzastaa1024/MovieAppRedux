@@ -8,6 +8,7 @@ import {
 } from "../actions";
 
 import MovieList from "../components/MovieList";
+import MovieModal from "../components/Modal/MovieModal";
 
 class MainPage extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class MainPage extends Component {
   }
 
   render() {
-    const { topRatedMovies, popularMovies } = this.props;
+    const { topRatedMovies, popularMovies, isModal } = this.props;
 
     const isMovieBykeyword = this.props.moviesByKeyword.length > 0;
 
@@ -40,6 +41,7 @@ class MainPage extends Component {
               : ratedAndPopularMovies
           }
         />
+        {isModal && <MovieModal />}
       </Wrapper>
     );
   }
@@ -51,6 +53,7 @@ const mapStateToProps = (state) => {
     popularMovies: state.popularMovies,
     moviesByKeyword: state.moviesByKeyword,
     keyword: state.keyword,
+    isModal: state.isModal,
   };
 };
 

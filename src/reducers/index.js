@@ -5,6 +5,8 @@ import moviesByKeyword from "./moviesByKeyword";
 import upcomingMovies from "./upcomingMovies";
 import tvShows from "./tvShows";
 import keywordReducer from "./keywordReducer";
+import modalReducer from "./modalReducer";
+import clikedMovie from "./clikedMovieReducer";
 
 export default combineReducers({
   topRatedMovies: topRatedMovies,
@@ -13,4 +15,6 @@ export default combineReducers({
   upcomingMovies: upcomingMovies,
   tvShows: tvShows,
   keyword: keywordReducer,
+  isModal: modalReducer,
+  clikedMovie: clikedMovie,
 });
