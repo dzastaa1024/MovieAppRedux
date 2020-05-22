@@ -29,7 +29,7 @@ class SidebarNews extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    upcomingMovies: state.upcomingMovies,
+    upcomingMovies: state.dataApi.upcomingMovies,
   };
 };
 

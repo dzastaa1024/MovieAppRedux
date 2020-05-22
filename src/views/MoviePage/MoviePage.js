@@ -36,8 +36,8 @@ class MoviePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    popularMovies: state.popularMovies,
-    moviesByKeyword: state.moviesByKeyword,
+    popularMovies: state.dataApi.popularMovies,
+    moviesByKeyword: state.dataApi.moviesByKeyword,
     keyword: state.keyword,
     isModal: state.isModal,
   };

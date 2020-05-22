@@ -49,9 +49,9 @@ class MainPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    topRatedMovies: state.topRatedMovies,
-    popularMovies: state.popularMovies,
-    moviesByKeyword: state.moviesByKeyword,
+    topRatedMovies: state.dataApi.topRatedMovies,
+    popularMovies: state.dataApi.popularMovies,
+    moviesByKeyword: state.dataApi.moviesByKeyword,
     keyword: state.keyword,
     isModal: state.isModal,
   };

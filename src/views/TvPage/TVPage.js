@@ -50,7 +50,7 @@ class TVPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tvShows: state.tvShows,
+    tvShows: state.dataApi.tvShows,
     keyword: state.keyword,
     isModal: state.isModal,
   };
