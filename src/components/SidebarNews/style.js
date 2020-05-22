@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  border: 1px solid black;
   width: 20rem;
   position: fixed;
   top: 10rem;
   bottom: 0;
   right: 0;
   background-color: #232220;
-  padding: 2rem;
+  padding: 1.5rem;
 `;
 
 const List = styled.ul`
