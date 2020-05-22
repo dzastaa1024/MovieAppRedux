@@ -8,7 +8,7 @@ import Scroll from "./components/Scroll";
 import MainPage from "./views/MainPage/MainPage";
 import MoviePage from "./views/MoviePage/MoviePage";
 import TVPage from "./views/TvPage/TVPage";
-// import WatchPage from "./views/WatchPage";
+import WatchPage from "./views/WatchList/WatchPage";
 import SidebarNews from "./components/SidebarNews";
 
 export default class App extends Component {
@@ -44,14 +44,14 @@ export default class App extends Component {
               </Scroll>
             )}
           />
-          {/* <Route
+          <Route
             path="/watchlists"
             render={() => (
               <Scroll>
                 <WatchPage />
               </Scroll>
             )}
-          /> */}
+          />
         </Router>
         <Scroll>
           <SidebarNews />

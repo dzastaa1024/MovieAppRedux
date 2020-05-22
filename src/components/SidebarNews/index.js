@@ -19,7 +19,7 @@ class SidebarNews extends Component {
         <Scroll>
           <List>
             <Title>Upcoming Movies</Title>
-            <MovieList movies={upcomingMovies} />
+            <MovieList movies={upcomingMovies} sidebarNews />
           </List>
         </Scroll>
       </Wrapper>

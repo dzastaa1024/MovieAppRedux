@@ -7,6 +7,7 @@ import tvShows from "./tvShows";
 import keywordReducer from "./keywordReducer";
 import modalReducer from "./modalReducer";
 import clikedMovie from "./clikedMovieReducer";
+import addMovieToWatchList from "./addMovieToWatchPage";
 
 export default combineReducers({
   topRatedMovies: topRatedMovies,
@@ -17,4 +18,5 @@ export default combineReducers({
   keyword: keywordReducer,
   isModal: modalReducer,
   clikedMovie: clikedMovie,
+  watchList: addMovieToWatchList,
 });
