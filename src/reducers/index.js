@@ -4,6 +4,7 @@ import keywordReducer from "./keywordReducer";
 import modalReducer from "./modalReducer";
 import clikedMovie from "./clikedMovieReducer";
 import addMovieToWatchList from "./addMovieToWatchPage";
+import userReducer from "./userReducer";
 
 export default combineReducers({
   keyword: keywordReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   clikedMovie: clikedMovie,
   watchList: addMovieToWatchList,
   dataApi: apiReducer,
+  user: userReducer,
 });
