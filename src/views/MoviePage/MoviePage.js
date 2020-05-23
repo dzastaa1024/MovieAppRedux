@@ -28,7 +28,6 @@ class MoviePage extends Component {
         <MovieList
           movies={isMovieBykeyword ? this.props.moviesByKeyword : popularMovies}
         />
-        {isModal && <MovieModal />}
       </Wrapper>
     );
   }

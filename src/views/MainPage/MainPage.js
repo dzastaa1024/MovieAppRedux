@@ -41,7 +41,6 @@ class MainPage extends Component {
               : ratedAndPopularMovies
           }
         />
-        {isModal && <MovieModal />}
       </Wrapper>
     );
   }

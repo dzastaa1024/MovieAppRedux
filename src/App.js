@@ -10,8 +10,12 @@ import MoviePage from "./views/MoviePage/MoviePage";
 import TVPage from "./views/TvPage/TVPage";
 import WatchPage from "./views/WatchList/WatchPage";
 import SidebarNews from "./components/SidebarNews";
+import SignUpForm from "./components/SignUpForm";
+import MovieModal from "./components/Modal/MovieModal/MovieModal";
+import { connect } from "react-redux";
+import { closeModal, openModal } from "./actions/MODAL_ACTION";
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <>
@@ -52,11 +56,28 @@ export default class App extends Component {
               </Scroll>
             )}
           />
+          <Route
+            path="/signupform"
+            render={() => (
+              <Scroll>
+                <SignUpForm />
+              </Scroll>
+            )}
+          />
         </Router>
         <Scroll>
           <SidebarNews />
         </Scroll>
+        {this.props.isModal ? <MovieModal /> : null}
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isModal: state.isModal,
+  };
+};
+
+export default connect(mapStateToProps)(App);

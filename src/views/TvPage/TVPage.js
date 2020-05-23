@@ -42,7 +42,6 @@ class TVPage extends Component {
       <Wrapper>
         {keyword && !filteredTVShows.length && <p>0 results</p>}
         <MovieList movies={movieToRender} />
-        {isModal && <MovieModal />}
       </Wrapper>
     );
   }

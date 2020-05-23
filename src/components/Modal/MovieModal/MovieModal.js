@@ -36,7 +36,9 @@ class MovieModal extends Component {
           </RightContent>
         </Container>
         <Action>
-          <ModalBtn onClick={() => addMovieToWatchPage(clikedMovie)}>
+          <ModalBtn
+            onClick={(() => addMovieToWatchPage(clikedMovie), closeModal)}
+          >
             Add to
           </ModalBtn>
           <ModalBtn onClick={closeModal} closing>
@@ -50,7 +52,10 @@ class MovieModal extends Component {
   render() {
     return (
       <div>
-        <Modal modalContent={this.renderContent()} />
+        <Modal
+          modalContent={this.renderContent()}
+          closeModal={this.props.closeModal}
+        />
       </div>
     );
   }

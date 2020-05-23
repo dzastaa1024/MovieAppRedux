@@ -16,7 +16,7 @@ class WatchPage extends Component {
 
 const mapStateToprops = (state) => {
   return {
-    watchList: state.dataApi.watchList,
+    watchList: state.watchList,
   };
 };
 
