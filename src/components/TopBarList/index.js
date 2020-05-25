@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 //import { openModal } from "../../actions";
 import UserModal from "../Modal/UserModal/UserModal";
+import UserForm from "../UserForm";
 import {
   Menu,
   MenuItemNavLink,
@@ -58,7 +59,7 @@ class TopBarList extends Component {
             </MenuItem>
           ) : (
             <MenuItem>
-              <NavLink to="/signUpForm">Sign Up</NavLink>
+              <NavLink to="/signup">Sign Up</NavLink>
             </MenuItem>
           )}
         </Menu>

@@ -40,7 +40,7 @@ export default class UserModal extends Component {
               </Link>
             </Item>
             <Item>
-              <Link to={"/accountsettings"} onClick={onClose}>
+              <Link to={"/account"} onClick={onClose}>
                 <ItemWrapper>
                   <IconWrapper>
                     <ListIcon as={heroiconsSolid.Cog} />
