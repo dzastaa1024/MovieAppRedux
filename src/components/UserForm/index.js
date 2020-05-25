@@ -8,6 +8,10 @@ import {
   Form,
   InputWrapper,
   Input,
+  DateOfBirth,
+  RadioBtn,
+  Select,
+  Option,
   SubmitBtn,
   NameOfError,
   ErrorsWrapper,
@@ -20,9 +24,22 @@ class SignUpForm extends Component {
       name: "",
       surname: "",
       email: "",
+      phone: "",
+      dateOfBirth: "",
+      gender: "female",
+      status: "",
     },
     errors: [],
   };
+
+  componentDidMount() {
+    this.setState({
+      user: {
+        ...this.state.user,
+        ...this.props.user,
+      },
+    });
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -39,10 +56,19 @@ class SignUpForm extends Component {
     // const isValid = this.isFormValid();
     setLocalStorage("user", this.state.user);
     this.props.addUser(this.state.user);
+
+    this.props.history.push("/");
   };
 
   render() {
-    const { name, surname, email } = this.state.user;
+    const {
+      name,
+      surname,
+      email,
+      phone,
+      dateOfBirth,
+      gender,
+    } = this.state.user;
 
     const { errors } = this.state;
 
@@ -86,7 +112,61 @@ class SignUpForm extends Component {
                 autocomplete="new-password"
               />
             </InputWrapper>
-            <SubmitBtn>Create account</SubmitBtn>
+
+            <InputWrapper>
+              <Label htmlFor="dateOfBirth">Date of birth</Label>
+              <DateOfBirth
+                value={dateOfBirth}
+                type="date"
+                name="dateOfBirth"
+                id="dateOfBirth"
+                onChange={this.handleChange}
+              />
+            </InputWrapper>
+
+            <InputWrapper>
+              <Label htmlFor="phone">Phone</Label>
+              <DateOfBirth
+                value={phone}
+                type="phone"
+                name="phone"
+                id="phone"
+                onChange={this.handleChange}
+              />
+            </InputWrapper>
+
+            <InputWrapper radiobtn>
+              <Label htmlFor="male">
+                Male
+                <RadioBtn
+                  type="radio"
+                  value="male"
+                  name="gender"
+                  id="male"
+                  checked={gender === "male"}
+                  onChange={this.handleChange}
+                />
+              </Label>
+              <Label htmlFor="female">
+                Female
+                <RadioBtn
+                  type="radio"
+                  value="female"
+                  name="gender"
+                  id="female"
+                  checked={gender === "female"}
+                  onChange={this.handleChange}
+                />
+              </Label>
+            </InputWrapper>
+
+            <Label htmlFor="select">
+              <Select id="select" onChange={this.handleChange} name="status">
+                <Option value="single">Single</Option>
+                <Option value="maried">Maried</Option>
+              </Select>
+            </Label>
+            <SubmitBtn>Update</SubmitBtn>
           </Form>
           <ErrorsWrapper>
             {errors.length > 0 &&
@@ -100,4 +180,10 @@ class SignUpForm extends Component {
   }
 }
 
-export default connect(null, { addUser })(SignUpForm);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { addUser })(SignUpForm);
