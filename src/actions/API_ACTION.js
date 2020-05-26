@@ -35,3 +35,10 @@ export const fetchTVShowsPopular = () => async (dispatch) => {
   const res = await movieDB.get(url);
   dispatch({ type: "FETCH_TVShowsPopular", payload: res.data.results });
 };
+
+export const fetchGenre = () => async (dispatch) => {
+  const url = `/3/genre/movie/list?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await movieDB.get(url);
+  dispatch({ type: "FETCH_Genres", payload: res.data.genres });
+};

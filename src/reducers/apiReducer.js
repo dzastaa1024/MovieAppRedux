@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   moviesByKeyword: [],
   upcomingMovies: [],
   tvShows: [],
+  genres: [],
 };
 
 const apiReducer = (state = INITIAL_STATE, action) => {
@@ -33,6 +34,11 @@ const apiReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         tvShows: action.payload,
+      };
+    case "FETCH_Genres":
+      return {
+        ...state,
+        genres: action.payload,
       };
     default:
       return state;
