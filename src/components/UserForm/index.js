@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { setLocalStorage } from "../../localStorage/localStorage";
 import { connect } from "react-redux";
-import { addUser } from "../../actions/userActions";
+import { updateUser } from "../../actions/userActions";
 
 import {
   Wrapper,
@@ -55,9 +55,7 @@ class SignUpForm extends Component {
     e.preventDefault();
     // const isValid = this.isFormValid();
     setLocalStorage("user", this.state.user);
-    this.props.addUser(this.state.user);
-
-    this.props.history.push("/");
+    this.props.updateUser(this.state.user);
   };
 
   render() {
@@ -186,4 +184,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addUser })(SignUpForm);
+export default connect(mapStateToProps, { updateUser })(SignUpForm);

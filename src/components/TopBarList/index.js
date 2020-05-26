@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 //import { openModal } from "../../actions";
 import UserModal from "../Modal/UserModal/UserModal";
-import UserForm from "../UserForm";
+import { logOutUser } from "../../actions/userActions";
 import {
   Menu,
   MenuItemNavLink,
@@ -64,7 +64,7 @@ class TopBarList extends Component {
           )}
         </Menu>
         {this.state.isUserModal ? (
-          <UserModal onClose={this.closeModal} />
+          <UserModal onClose={this.closeModal} logOut={this.props.logOutUser} />
         ) : null}
       </>
     );
@@ -77,4 +77,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(TopBarList);
+export default connect(mapStateToProps, { logOutUser })(TopBarList);

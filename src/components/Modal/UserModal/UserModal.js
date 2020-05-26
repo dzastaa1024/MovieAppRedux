@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Modal from "../";
 import * as heroiconsSolid from "@styled-icons/heroicons-solid";
 import { Link } from "react-router-dom";
+import { clearLocalStorage } from "../../../localStorage/localStorage";
+
 import {
   Wrapper,
   TopContent,
@@ -57,6 +59,23 @@ export default class UserModal extends Component {
                 <Name>Activity</Name>
               </ItemWrapper>
             </Item>
+            <Item>
+              <Link
+                to={"/"}
+                onClick={() => {
+                  clearLocalStorage("user");
+                  this.props.logOut();
+                  onClose();
+                }}
+              >
+                <ItemWrapper>
+                  <IconWrapper>
+                    <ListIcon as={heroiconsSolid.Cog} />
+                  </IconWrapper>
+                  <Name>Log Out</Name>
+                </ItemWrapper>
+              </Link>
+            </Item>
           </List>
         </ButtomContent>
       </Wrapper>
@@ -65,7 +84,6 @@ export default class UserModal extends Component {
 
   render() {
     const { onClose } = this.props;
-    console.log("close w usermodalu", onClose);
     return (
       <div>
         <Modal modalContent={this.renderContent()} closeModal={onClose} />
