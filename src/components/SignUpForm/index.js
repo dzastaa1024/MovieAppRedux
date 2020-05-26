@@ -24,6 +24,12 @@ class SignUpForm extends Component {
     errors: [],
   };
 
+  componentDidMount() {
+    if (this.props.user) {
+      this.props.history.push("/");
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       user: {
@@ -39,6 +45,8 @@ class SignUpForm extends Component {
     // const isValid = this.isFormValid();
     setLocalStorage("user", this.state.user);
     this.props.addUser(this.state.user);
+
+    this.props.history.push("/");
   };
 
   render() {
@@ -100,4 +108,10 @@ class SignUpForm extends Component {
   }
 }
 
-export default connect(null, { addUser })(SignUpForm);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { addUser })(SignUpForm);
