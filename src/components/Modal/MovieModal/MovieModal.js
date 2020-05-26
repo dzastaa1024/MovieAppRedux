@@ -20,6 +20,7 @@ import { addMovieToWatchPage, closeModal } from "../../../actions";
 class MovieModal extends Component {
   renderContent() {
     const { clikedMovie, addMovieToWatchPage, closeModal } = this.props;
+
     return (
       <Wrapper>
         <Container>
@@ -37,7 +38,10 @@ class MovieModal extends Component {
         </Container>
         <Action>
           <ModalBtn
-            onClick={(() => addMovieToWatchPage(clikedMovie), closeModal)}
+            onClick={() => {
+              addMovieToWatchPage(clikedMovie);
+              closeModal();
+            }}
           >
             Add to
           </ModalBtn>
