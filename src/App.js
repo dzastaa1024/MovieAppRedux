@@ -14,6 +14,8 @@ import SignUpForm from "./components/SignUpForm";
 import MovieModal from "./components/Modal/MovieModal/MovieModal";
 import { connect } from "react-redux";
 import { closeModal, openModal } from "./actions/MODAL_ACTION";
+import UserForm from "./components/UserForm";
+import requireAuth from "./hoc/requireAuth";
 
 class App extends Component {
   render() {
@@ -56,14 +58,8 @@ class App extends Component {
               </Scroll>
             )}
           />
-          <Route
-            path="/signupform"
-            render={() => (
-              <Scroll>
-                <SignUpForm />
-              </Scroll>
-            )}
-          />
+          <Route path="/signup" component={SignUpForm} />
+          <Route path="/account" component={requireAuth(UserForm)} />
         </Router>
         <Scroll>
           <SidebarNews />
