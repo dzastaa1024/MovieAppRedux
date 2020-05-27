@@ -5,14 +5,21 @@ import MovieItem from "../MovieItem";
 
 class MovieList extends Component {
   render() {
-    const { movies } = this.props;
+    const { movies, sidebarNews } = this.props;
 
     if (Array.isArray(movies)) {
       return (
         <Wrapper>
-          <List>
+          <Title sidebarNews={sidebarNews}>Results</Title>
+          <List sidebarNews={sidebarNews}>
             {movies.map((movie) => {
-              return <MovieItem movie={movie} key={movie.id} />;
+              return (
+                <MovieItem
+                  movie={movie}
+                  key={movie.id}
+                  sidebarNews={sidebarNews}
+                />
+              );
             })}
           </List>
         </Wrapper>
