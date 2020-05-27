@@ -5,6 +5,8 @@ const INITIAL_STATE = {
   upcomingMovies: [],
   tvShows: [],
   genres: [],
+  allMoviesAndTvShows: [],
+  languages: [],
 };
 
 const apiReducer = (state = INITIAL_STATE, action) => {
@@ -39,6 +41,16 @@ const apiReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         genres: action.payload,
+      };
+    case "FETCH_AllMoviesAndTvShows":
+      return {
+        ...state,
+        allMoviesAndTvShows: action.payload,
+      };
+    case "FETCH_Languages":
+      return {
+        ...state,
+        languages: action.payload,
       };
     default:
       return state;

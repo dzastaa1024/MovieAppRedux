@@ -1,5 +1,4 @@
 import movieDB from "../api/movieDB";
-import _ from "lodash";
 
 export const fetchTopRatedMovies = () => async (dispatch) => {
   const url = `/3/movie/top_rated?api_key=${process.env.REACT_APP_APIkey}`;
@@ -41,4 +40,19 @@ export const fetchGenre = () => async (dispatch) => {
 
   const res = await movieDB.get(url);
   dispatch({ type: "FETCH_Genres", payload: res.data.genres });
+};
+
+export const fetchAllMoviesAndTvShows = (keyword) => async (dispatch) => {
+  const url = `/3/search/multi?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
+
+  const res = await movieDB.get(url);
+  dispatch({ type: "FETCH_AllMoviesAndTvShows", payload: res.data.results });
+};
+
+export const fetchLanguages = () => async (dispatch) => {
+  const url = `/3/configuration/languages?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await movieDB.get(url);
+
+  dispatch({ type: "FETCH_Languages", payload: res.data });
 };
