@@ -8,9 +8,6 @@ import {
   ModalAction,
 } from "./style";
 
-import { connect } from "react-redux";
-import { closeModal } from "../../actions";
-
 const Modal = ({ closeModal, modalContent, s }) => {
   return ReactDOM.createPortal(
     <Dimmer onClick={closeModal}>
@@ -24,4 +21,4 @@ const Modal = ({ closeModal, modalContent, s }) => {
   );
 };
 
-export default connect(null, { closeModal })(Modal);
+export default Modal;
