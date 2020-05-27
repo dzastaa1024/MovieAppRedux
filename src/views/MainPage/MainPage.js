@@ -37,26 +37,23 @@ class MainPage extends Component {
       popularMovies,
     };
 
-    if (moviesByKeyword) {
+    let moviesToRender = moviesByKeyword;
+
+    if (moviesToRender) {
       activeFilter.forEach((filterId) => {
-        const filterArray = moviesByKeyword.filter((movie) => {
+        moviesToRender = moviesToRender.filter((movie) => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
             (movie.genre && movie.genre === filterId)
           );
         });
-        console.log("filterArray", filterArray);
       });
     }
 
     return (
       <Wrapper>
         <MovieList
-          movies={
-            isMoviesBykeyword
-              ? this.props.moviesByKeyword
-              : ratedAndPopularMovies
-          }
+          movies={isMoviesBykeyword ? moviesToRender : ratedAndPopularMovies}
         />
       </Wrapper>
     );
