@@ -23,20 +23,37 @@ class MainPage extends Component {
   }
 
   render() {
-    const { topRatedMovies, popularMovies, isModal } = this.props;
+    const {
+      topRatedMovies,
+      popularMovies,
+      activeFilter,
+      moviesByKeyword,
+    } = this.props;
 
-    const isMovieBykeyword = this.props.moviesByKeyword.length > 0;
+    const isMoviesBykeyword = moviesByKeyword.length > 0;
 
     const ratedAndPopularMovies = {
       topRatedMovies,
       popularMovies,
     };
 
+    if (moviesByKeyword) {
+      activeFilter.forEach((filterId) => {
+        const filterArray = moviesByKeyword.filter((movie) => {
+          return (
+            (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
+            (movie.genre && movie.genre === filterId)
+          );
+        });
+        console.log("filterArray", filterArray);
+      });
+    }
+
     return (
       <Wrapper>
         <MovieList
           movies={
-            isMovieBykeyword
+            isMoviesBykeyword
               ? this.props.moviesByKeyword
               : ratedAndPopularMovies
           }
@@ -53,6 +70,7 @@ const mapStateToProps = (state) => {
     moviesByKeyword: state.dataApi.moviesByKeyword,
     keyword: state.keyword,
     isModal: state.isModal,
+    activeFilter: state.activeFilter.genres,
   };
 };
 
