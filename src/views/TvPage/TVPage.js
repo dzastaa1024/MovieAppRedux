@@ -34,14 +34,29 @@ class TVPage extends Component {
   }
 
   render() {
-    const { tvShows, keyword, isModal } = this.props;
+    const { tvShows, keyword, activeFilter } = this.props;
     const { filteredTVShows } = this.state;
 
-    const movieToRender = keyword ? filteredTVShows : tvShows;
+    //const movieToRender = keyword ? filteredTVShows : tvShows;
+
+    let moviesToRender = filteredTVShows;
+
+    if (moviesToRender) {
+      activeFilter.forEach((filterId) => {
+        moviesToRender = moviesToRender.filter((movie) => {
+          return (
+            (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
+            (movie.genre && movie.genre === filterId)
+          );
+        });
+      });
+    }
+
     return (
       <Wrapper>
-        {keyword && !filteredTVShows.length && <p>0 results</p>}
-        <MovieList movies={movieToRender} />
+        {/* {keyword && !filteredTVShows.length && <p>0 results</p>}
+        <MovieList movies={movieToRender} /> */}
+        <MovieList movies={keyword ? moviesToRender : tvShows} />
       </Wrapper>
     );
   }
@@ -52,6 +67,7 @@ const mapStateToProps = (state) => {
     tvShows: state.dataApi.tvShows,
     keyword: state.keyword,
     isModal: state.isModal,
+    activeFilter: state.activeFilter.genres,
   };
 };
 
