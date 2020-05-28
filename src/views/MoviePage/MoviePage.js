@@ -17,18 +17,34 @@ class MoviePage extends Component {
   }
 
   render() {
-    const { popularMovies, moviesByKeyword, activeFilter } = this.props;
+    const {
+      popularMovies,
+      moviesByKeyword,
+      activeGenreFilter,
+      activeLanguageFilter,
+    } = this.props;
 
     const isMovieBykeyword = moviesByKeyword.length > 0;
 
     let moviesToRender = moviesByKeyword;
 
     if (moviesToRender) {
-      activeFilter.forEach((filterId) => {
+      activeGenreFilter.forEach((filterId) => {
         moviesToRender = moviesToRender.filter((movie) => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
             (movie.genre && movie.genre === filterId)
+          );
+        });
+      });
+    }
+
+    if (moviesToRender && activeLanguageFilter.length > 0) {
+      activeLanguageFilter.forEach((filterLanguage) => {
+        moviesToRender = moviesToRender.filter((movie) => {
+          return (
+            movie.original_language &&
+            movie.original_language === filterLanguage
           );
         });
       });
@@ -46,12 +62,12 @@ const popularMoviesSelector = (state) => state.dataApi.popularMovies;
 
 const mapStateToProps = (state) => {
   return {
-    // popularMovies: state.dataApi.popularMovies,
     popularMovies: popularMoviesSelector(state),
     moviesByKeyword: state.dataApi.moviesByKeyword,
     keyword: state.keyword,
     isModal: state.isModal,
-    activeFilter: state.activeFilter.genres,
+    activeGenreFilter: state.activeGenreFilter.genres,
+    activeLanguageFilter: state.activeLanguageFilter.languages,
   };
 };
 

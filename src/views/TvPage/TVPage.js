@@ -33,15 +33,18 @@ class TVPage extends Component {
   }
 
   render() {
-    const { tvShows, keyword, activeFilter } = this.props;
+    const {
+      tvShows,
+      keyword,
+      activeGenreFilter,
+      activeLanguageFilter,
+    } = this.props;
     const { filteredTVShows } = this.state;
-
-    //const movieToRender = keyword ? filteredTVShows : tvShows;
 
     let moviesToRender = filteredTVShows;
 
     if (moviesToRender) {
-      activeFilter.forEach((filterId) => {
+      activeGenreFilter.forEach((filterId) => {
         moviesToRender = moviesToRender.filter((movie) => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
@@ -51,10 +54,19 @@ class TVPage extends Component {
       });
     }
 
+    if (moviesToRender && activeLanguageFilter.length > 0) {
+      activeLanguageFilter.forEach((filterLanguage) => {
+        moviesToRender = moviesToRender.filter((movie) => {
+          return (
+            movie.original_language &&
+            movie.original_language === filterLanguage
+          );
+        });
+      });
+    }
+
     return (
       <Wrapper>
-        {/* {keyword && !filteredTVShows.length && <p>0 results</p>}
-        <MovieList movies={movieToRender} /> */}
         <MovieList movies={keyword ? moviesToRender : tvShows} />
       </Wrapper>
     );
@@ -66,7 +78,8 @@ const mapStateToProps = (state) => {
     tvShows: state.dataApi.tvShows,
     keyword: state.keyword,
     isModal: state.isModal,
-    activeFilter: state.activeFilter.genres,
+    activeGenreFilter: state.activeGenreFilter.genres,
+    activeLanguageFilter: state.activeLanguageFilter.languages,
   };
 };
 
