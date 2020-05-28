@@ -6,6 +6,7 @@ import clikedMovie from "./clikedMovieReducer";
 import addMovieToWatchList from "./addMovieToWatchPage";
 import userReducer from "./userReducer";
 import toggleGenreFilters from "./filterReducer";
+import toggleLanguageFilters from "./filterReducer";
 
 export default combineReducers({
   keyword: keywordReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   watchList: addMovieToWatchList,
   dataApi: apiReducer,
   user: userReducer,
-  activeFilter: toggleGenreFilters,
+  activeGenreFilter: toggleGenreFilters,
+  activeLanguageFilter: toggleLanguageFilters,
 });

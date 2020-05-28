@@ -4,3 +4,10 @@ export const toggleGenreFilters = (id) => {
     payload: id,
   };
 };
+
+export const toggleLanguageFilters = (language) => {
+  return {
+    type: "TOGGLE_LANGUAGE_FILTER",
+    payload: language,
+  };
+};

@@ -8,7 +8,6 @@ import {
 } from "../../actions";
 
 import MovieList from "../../components/MovieList";
-import MovieModal from "../../components/Modal/MovieModal/MovieModal";
 
 class MainPage extends Component {
   componentDidMount() {
@@ -26,8 +25,9 @@ class MainPage extends Component {
     const {
       topRatedMovies,
       popularMovies,
-      activeFilter,
+      activeGenreFilter,
       moviesByKeyword,
+      activeLanguageFilter,
     } = this.props;
 
     const isMoviesBykeyword = moviesByKeyword.length > 0;
@@ -38,13 +38,23 @@ class MainPage extends Component {
     };
 
     let moviesToRender = moviesByKeyword;
-
-    if (moviesToRender) {
-      activeFilter.forEach((filterId) => {
+    if (moviesToRender && activeGenreFilter.length > 0) {
+      activeGenreFilter.forEach((filterId) => {
         moviesToRender = moviesToRender.filter((movie) => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
             (movie.genre && movie.genre === filterId)
+          );
+        });
+      });
+    }
+
+    if (moviesToRender && activeLanguageFilter.length > 0) {
+      activeLanguageFilter.forEach((filterLanguage) => {
+        moviesToRender = moviesToRender.filter((movie) => {
+          return (
+            movie.original_language &&
+            movie.original_language === filterLanguage
           );
         });
       });
@@ -67,7 +77,8 @@ const mapStateToProps = (state) => {
     moviesByKeyword: state.dataApi.moviesByKeyword,
     keyword: state.keyword,
     isModal: state.isModal,
-    activeFilter: state.activeFilter.genres,
+    activeGenreFilter: state.activeGenreFilter.genres,
+    activeLanguageFilter: state.activeLanguageFilter.languages,
   };
 };
 

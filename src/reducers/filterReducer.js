@@ -7,9 +7,9 @@ export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case "TOGGLE_GENRE_FILTER":
       const filterId = action.payload;
-      const isActiveFilter = state.genres.includes(filterId);
+      const isActiveGenreFilter = state.genres.includes(filterId);
 
-      if (isActiveFilter) {
+      if (isActiveGenreFilter) {
         const activeFilters = state.genres.filter((genreId) => {
           return genreId !== filterId;
         });
@@ -21,6 +21,25 @@ export default (state = INIT_STATE, action) => {
         return {
           ...state,
           genres: [...state.genres, action.payload],
+        };
+      }
+
+    case "TOGGLE_LANGUAGE_FILTER":
+      const filterLanguage = action.payload;
+      const isActiveLanguageFilter = state.languages.includes(filterLanguage);
+
+      if (isActiveLanguageFilter) {
+        const activeFilters = state.languages.filter((filterLang) => {
+          return filterLang !== filterLanguage;
+        });
+        return {
+          ...state,
+          languages: activeFilters,
+        };
+      } else {
+        return {
+          ...state,
+          languages: [...state.languages, action.payload],
         };
       }
 
