@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchTVShowsPopular } from "../../actions";
 
 import MovieList from "../../components/MovieList";
-import MovieModal from "../../components/Modal/MovieModal/MovieModal";
 
 class TVPage extends Component {
   state = {

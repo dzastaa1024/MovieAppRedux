@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchPopularMovies, fetchMoviesByKeyword } from "../../actions";
 
 import MovieList from "../../components/MovieList";
-import MovieModal from "../../components/Modal/MovieModal/MovieModal";
 
 class MoviePage extends Component {
   componentDidMount() {
@@ -43,9 +42,12 @@ class MoviePage extends Component {
   }
 }
 
+const popularMoviesSelector = (state) => state.dataApi.popularMovies;
+
 const mapStateToProps = (state) => {
   return {
-    popularMovies: state.dataApi.popularMovies,
+    // popularMovies: state.dataApi.popularMovies,
+    popularMovies: popularMoviesSelector(state),
     moviesByKeyword: state.dataApi.moviesByKeyword,
     keyword: state.keyword,
     isModal: state.isModal,

@@ -13,7 +13,6 @@ import SidebarNews from "./components/SidebarNews";
 import SignUpForm from "./components/SignUpForm";
 import MovieModal from "./components/Modal/MovieModal/MovieModal";
 import { connect } from "react-redux";
-import { closeModal, openModal } from "./actions/MODAL_ACTION";
 import UserForm from "./components/UserForm";
 import requireAuth from "./hoc/requireAuth";
 
