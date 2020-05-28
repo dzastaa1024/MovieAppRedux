@@ -1,11 +1,4 @@
-import { FETCH_PopularMovies } from "../actions/types";
-import { FETCH_TopRatedMovies } from "../actions/types";
-import { FETCH_MoviesByKeyword } from "../actions/types";
-import { FETCH_UpcomingMovies } from "../actions/types";
-import { FETCH_TVShowsPopular } from "../actions/types";
-import { FETCH_Genres } from "../actions/types";
-import { FETCH_AllMoviesAndTvShows } from "../actions/types";
-import { FETCH_Languages } from "../actions/types";
+import * as type from "../actions/types";
 
 const INITIAL_STATE = {
   topRatedMovies: [],
@@ -20,43 +13,43 @@ const INITIAL_STATE = {
 
 const apiReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FETCH_PopularMovies:
+    case type.FETCH_PopularMovies:
       return {
         ...state,
         popularMovies: action.payload,
       };
-    case FETCH_TopRatedMovies:
+    case type.FETCH_TopRatedMovies:
       return {
         ...state,
         topRatedMovies: action.payload,
       };
 
-    case FETCH_MoviesByKeyword:
+    case type.FETCH_MoviesByKeyword:
       return {
         ...state,
         moviesByKeyword: action.payload,
       };
-    case FETCH_UpcomingMovies:
+    case type.FETCH_UpcomingMovies:
       return {
         ...state,
         upcomingMovies: action.payload,
       };
-    case FETCH_TVShowsPopular:
+    case type.FETCH_TVShowsPopular:
       return {
         ...state,
         tvShows: action.payload,
       };
-    case FETCH_Genres:
+    case type.FETCH_Genres:
       return {
         ...state,
         genres: action.payload,
       };
-    case FETCH_AllMoviesAndTvShows:
+    case type.FETCH_AllMoviesAndTvShows:
       return {
         ...state,
         allMoviesAndTvShows: action.payload,
       };
-    case FETCH_Languages:
+    case type.FETCH_Languages:
       return {
         ...state,
         languages: action.payload,
