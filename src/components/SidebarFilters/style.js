@@ -9,3 +9,5 @@ export const Wrapper = styled.div`
   bottom: 0;
   left: 0;
 `;
+
+export const List = styled.li``;
