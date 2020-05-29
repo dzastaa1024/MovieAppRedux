@@ -49,3 +49,8 @@ export default (state = INIT_STATE, action) => {
       return state;
   }
 };
+
+export const getActiveGenreFilterSelector = (state) =>
+  state.activeGenreFilter.genres;
+export const getActiveLanguageFilterSelector = (state) =>
+  state.activeLanguageFilter.languages;
