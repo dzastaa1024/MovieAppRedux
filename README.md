@@ -1,3 +1,5 @@
+This is an update for my previous Movie App, which was made just in React. That application is the React-Redux app that has been created with create-react-app. 
+
 
 ## Installation
 
@@ -28,16 +30,15 @@ I used the couple's endpoints of data.
  
 For displaying movies on the main page - I use data that represents the most popular and top-rated last week's movies, which can be viewed using the horizontal slider.
 
+![image](zdj9.png)
 ![image](zdj2.png)
-![image](zdj3.png)
 
 Another endpoint is all movies and Tv shows, that the user can search by keyword.
 
-![image](zdj4.png)
+![image](zdj3.png)
 
 In the right sidebar, I used data that shows upcoming movies.
 
-![image](zdj5.png)
 
 Subpage called 'TVShows' - the most popular tv shows are shown by default, it is also possible to search for tv shows by keyword in the database with all tv shows.
 
@@ -67,8 +68,8 @@ There is also a second type of modal on the page, which allows moving the user t
 In the application, I implemented a simple login system using local Storage.
 To log in to the application is needed to complete the form that is valid. 
 
-![image](zdj9.png)
+
 
 Each subpage uses filters, you can filter movies by genres and languages.
 
-![image](zdj10.png)
+![image](zdj5.png)
