@@ -68,7 +68,7 @@ There is also a second type of modal on the page, which allows moving the user t
 In the application, I implemented a simple login system using local Storage.
 To log in to the application is needed to complete the form that is valid. 
 
-
+![image](zdj10.png)
 
 Each subpage uses filters, you can filter movies by genres and languages.
 
