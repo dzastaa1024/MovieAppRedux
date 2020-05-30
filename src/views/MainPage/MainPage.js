@@ -8,6 +8,14 @@ import {
 } from "../../actions";
 
 import MovieList from "../../components/MovieList";
+import {
+  getMoviesByKeywordSelector,
+  getTopRatedMoviesSelector,
+  getPopularMoviessSelector,
+  getActiveGenreFilterSelector,
+  getActiveLanguageFilterSelector,
+  getKeywordSelector,
+} from "../../reducers";
 
 class MainPage extends Component {
   componentDidMount() {
@@ -72,13 +80,12 @@ class MainPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    topRatedMovies: state.dataApi.topRatedMovies,
-    popularMovies: state.dataApi.popularMovies,
-    moviesByKeyword: state.dataApi.moviesByKeyword,
-    keyword: state.keyword,
-    isModal: state.isModal,
-    activeGenreFilter: state.activeGenreFilter.genres,
-    activeLanguageFilter: state.activeLanguageFilter.languages,
+    topRatedMovies: getTopRatedMoviesSelector(state),
+    popularMovies: getPopularMoviessSelector(state),
+    moviesByKeyword: getMoviesByKeywordSelector(state),
+    keyword: getKeywordSelector(state),
+    activeGenreFilter: getActiveGenreFilterSelector(state),
+    activeLanguageFilter: getActiveLanguageFilterSelector(state),
   };
 };
 
