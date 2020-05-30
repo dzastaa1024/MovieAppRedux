@@ -8,3 +8,5 @@ export default (state = "", action) => {
       return state;
   }
 };
+
+export const getKeywordSelector = (state) => state.keyword;

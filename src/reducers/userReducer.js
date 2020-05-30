@@ -11,3 +11,5 @@ export default (state = null, action) => {
       return state;
   }
 };
+
+export const getUserSelector = (state) => state.user;

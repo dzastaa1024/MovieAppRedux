@@ -60,3 +60,10 @@ const apiReducer = (state = INITIAL_STATE, action) => {
 };
 
 export default apiReducer;
+
+export const getMoviesByKeywordSelector = (state) =>
+  state.dataApi.moviesByKeyword;
+
+export const getTopRatedMoviesSelector = (state) =>
+  state.dataApi.topRatedMovies;
+export const getPopularMoviessSelector = (state) => state.dataApi.popularMovies;

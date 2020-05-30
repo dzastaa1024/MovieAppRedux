@@ -21,3 +21,4 @@ export const UPDATE_USER = "UPDATE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 
 export const ADD_MOVIE_TO_WATCHPAGE = "ADD_MOVIE_TO_WATCHPAGE";
+export const FETCH_AllMoviesAndTvShows = "FETCH_AllMoviesAndTvShows";

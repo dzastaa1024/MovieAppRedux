@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 //import { openModal } from "../../actions";
 import UserModal from "../Modal/UserModal/UserModal";
 import { logOutUser } from "../../actions/userActions";
+import { getUserSelector } from "../../reducers";
 import {
   Menu,
   MenuItemNavLink,
@@ -73,7 +74,7 @@ class TopBarList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: getUserSelector(state),
   };
 };
 

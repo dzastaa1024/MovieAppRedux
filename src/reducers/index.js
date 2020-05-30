@@ -8,6 +8,19 @@ import userReducer from "./userReducer";
 import toggleGenreFilters from "./filterReducer";
 import toggleLanguageFilters from "./filterReducer";
 
+// SELECTORS
+import { getUserSelector } from "./userReducer";
+import { getKeywordSelector } from "./keywordReducer";
+import {
+  getActiveGenreFilterSelector,
+  getActiveLanguageFilterSelector,
+} from "./filterReducer";
+import {
+  getMoviesByKeywordSelector,
+  getTopRatedMoviesSelector,
+  getPopularMoviessSelector,
+} from "./apiReducer";
+
 export default combineReducers({
   keyword: keywordReducer,
   isModal: modalReducer,
@@ -18,3 +31,13 @@ export default combineReducers({
   activeGenreFilter: toggleGenreFilters,
   activeLanguageFilter: toggleLanguageFilters,
 });
+
+export {
+  getUserSelector,
+  getMoviesByKeywordSelector,
+  getTopRatedMoviesSelector,
+  getPopularMoviessSelector,
+  getKeywordSelector,
+  getActiveGenreFilterSelector,
+  getActiveLanguageFilterSelector,
+};
