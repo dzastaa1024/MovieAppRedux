@@ -40,9 +40,45 @@ class SignUpForm extends Component {
     });
   };
 
+  isFormValid = () => {
+    const errors = [];
+
+    if (this.isFiledEmpty()) {
+      errors.push({ message: "Fill in the empty fields." });
+    }
+
+    if (this.isEmailValid()) {
+      errors.push({ message: "Your emial is incorrect." });
+    }
+
+    if (errors.length) {
+      this.setState({
+        errors: errors,
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  isEmailValid = () => {
+    return !this.state.user.email.includes("@");
+  };
+
+  isFiledEmpty = () => {
+    const { name, surname, email } = this.state.user;
+    return !name.length || !surname.length || !email.length;
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    // const isValid = this.isFormValid();
+
+    const isValid = this.isFormValid();
+
+    if (!isValid) {
+      return;
+    }
+
     setLocalStorage("user", this.state.user);
     this.props.addUser(this.state.user);
 
