@@ -31,7 +31,7 @@ I used the couple's endpoints of data.
 For displaying movies on the main page - I use data that represents the most popular and top-rated last week's movies, which can be viewed using the horizontal slider.
 
 ![image](zdj9.png)
-![image](zdj2.png)
+
 
 Another endpoint is all movies and Tv shows, that the user can search by keyword.
 
