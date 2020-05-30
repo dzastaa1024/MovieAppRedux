@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import { Wrapper } from "./style";
 import { connect } from "react-redux";
 import { fetchPopularMovies, fetchMoviesByKeyword } from "../../actions";
+import {
+  getMoviesByKeywordSelector,
+  getKeywordSelector,
+  getActiveGenreFilterSelectors,
+  getActiveLanguageFilterSelectors,
+  getPopularMoviessSelector,
+} from "../../reducers";
 
 import MovieList from "../../components/MovieList";
 
@@ -58,16 +65,14 @@ class MoviePage extends Component {
   }
 }
 
-const popularMoviesSelector = (state) => state.dataApi.popularMovies;
-
 const mapStateToProps = (state) => {
   return {
-    popularMovies: popularMoviesSelector(state),
-    moviesByKeyword: state.dataApi.moviesByKeyword,
-    keyword: state.keyword,
+    popularMovies: getPopularMoviessSelector(state),
+    moviesByKeyword: getMoviesByKeywordSelector(state),
+    keyword: getKeywordSelector(),
     isModal: state.isModal,
-    activeGenreFilter: state.activeGenreFilter.genres,
-    activeLanguageFilter: state.activeLanguageFilter.languages,
+    activeGenreFilter: getActiveGenreFilterSelectors(state),
+    activeLanguageFilter: getActiveLanguageFilterSelectors(state),
   };
 };
 
