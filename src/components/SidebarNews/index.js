@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Wrapper, List, Title } from "./style";
 import { fetchMoviesUpcoming } from "../../actions/index";
 
@@ -6,26 +6,26 @@ import MovieList from "../MovieList";
 import Scroll from "../Scroll";
 import { connect } from "react-redux";
 
-class SidebarNews extends Component {
-  componentDidMount() {
-    this.props.fetchMoviesUpcoming();
-  }
+const SidebarNews = ({ upcomingMovies, fetchMoviesUpcoming }) => {
+  useEffect(() => {
+    fetchMoviesUpcoming();
+  }, []);
 
-  render() {
-    const { upcomingMovies } = this.props;
+  // componentDidMount() {
+  //   this.props.fetchMoviesUpcoming();
+  // }
 
-    return (
-      <Wrapper>
-        <Scroll>
-          <List>
-            <Title>Upcoming Movies</Title>
-            <MovieList movies={upcomingMovies} sidebarNews />
-          </List>
-        </Scroll>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <Scroll>
+        <List>
+          <Title>Upcoming Movies</Title>
+          <MovieList movies={upcomingMovies} sidebarNews />
+        </List>
+      </Scroll>
+    </Wrapper>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
