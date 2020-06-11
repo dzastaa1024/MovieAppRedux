@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-//import { openModal } from "../../actions";
 import UserModal from "../Modal/UserModal/UserModal";
 import { logOutUser } from "../../actions/userActions";
 import { getUserSelector } from "../../reducers";
@@ -20,57 +19,60 @@ const menuItems = [
   { btnText: "WatchList", to: "/watchlists" },
 ];
 
-class TopBarList extends Component {
-  state = {
-    isUserModal: false,
+const TopBarList = ({ logOutUser, user }) => {
+  // state = {
+  //   isUserModal: false,
+  // };
+
+  const [isUserModal, setIsUserModal] = useState(false);
+
+  const openModal = () => {
+    // this.setState({
+    //   isUserModal: true,
+    // });
+
+    setIsUserModal(true);
   };
 
-  openModal = () => {
-    this.setState({
-      isUserModal: true,
-    });
+  const closeModal = () => {
+    // this.setState({
+    //   isUserModal: false,
+    // });
+    setIsUserModal(false);
   };
 
-  closeModal = () => {
-    this.setState({
-      isUserModal: false,
-    });
-  };
-
-  render() {
-    return (
-      <>
-        <Menu>
-          {menuItems.map((menuItem) => (
-            <MenuItemNavLink
-              to={menuItem.to}
-              key={menuItem.to}
-              activeStyle={{ color: "#ecff34" }}
-            >
-              <MenuItem>
-                <MenuItemValue>{menuItem.btnText}</MenuItemValue>
-              </MenuItem>
-            </MenuItemNavLink>
-          ))}
-          {this.props.user ? (
+  return (
+    <>
+      <Menu>
+        {menuItems.map((menuItem) => (
+          <MenuItemNavLink
+            to={menuItem.to}
+            key={menuItem.to}
+            activeStyle={{ color: "#ecff34" }}
+          >
             <MenuItem>
-              <Picture>
-                <UserIcon onClick={this.openModal} />
-              </Picture>
+              <MenuItemValue>{menuItem.btnText}</MenuItemValue>
             </MenuItem>
-          ) : (
-            <MenuItem>
-              <NavLink to="/signup">Sign Up</NavLink>
-            </MenuItem>
-          )}
-        </Menu>
-        {this.state.isUserModal ? (
-          <UserModal onClose={this.closeModal} logOut={this.props.logOutUser} />
-        ) : null}
-      </>
-    );
-  }
-}
+          </MenuItemNavLink>
+        ))}
+        {user ? (
+          <MenuItem>
+            <Picture>
+              <UserIcon onClick={openModal} />
+            </Picture>
+          </MenuItem>
+        ) : (
+          <MenuItem>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </MenuItem>
+        )}
+      </Menu>
+      {isUserModal ? (
+        <UserModal onClose={closeModal} logOut={logOutUser} />
+      ) : null}
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
