@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Wrapper,
   LeftWrapper,
@@ -13,33 +13,31 @@ import { Link } from "react-router-dom";
 
 import TopBarList from "../TopBarList";
 
-class Topbar extends Component {
-  handleChange = (e) => {
-    this.props.updateKeyword(e.target.value);
+const Topbar = ({ updateKeyword, keyword }) => {
+  const handleChange = (e) => {
+    updateKeyword(e.target.value);
   };
 
-  render() {
-    return (
-      <Wrapper>
-        <LeftWrapper>
-          <Link to={"/"}>
-            <CameraIcon />
-          </Link>
-        </LeftWrapper>
-        <MiddleWrapper>
-          <Input
-            onChange={this.handleChange}
-            value={this.props.keyword}
-            placeholder="Search any movies or tv shows"
-          />
-        </MiddleWrapper>
-        <RightWrapper>
-          <TopBarList />
-        </RightWrapper>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <LeftWrapper>
+        <Link to={"/"}>
+          <CameraIcon />
+        </Link>
+      </LeftWrapper>
+      <MiddleWrapper>
+        <Input
+          onChange={handleChange}
+          value={keyword}
+          placeholder="Search any movies or tv shows"
+        />
+      </MiddleWrapper>
+      <RightWrapper>
+        <TopBarList />
+      </RightWrapper>
+    </Wrapper>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
