@@ -35,7 +35,7 @@ const RightWrapper = styled.div``;
 const CameraIcon = styled(boxiconsSolid.CameraMovie)`
   width: 6rem;
   height: 6rem;
-  color: #ecff34;
+  color: #ecff35;
 `;
 
 export { Wrapper, LeftWrapper, MiddleWrapper, Input, RightWrapper, CameraIcon };
