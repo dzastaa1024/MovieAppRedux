@@ -18,7 +18,7 @@ import {
   Label,
 } from "./style";
 
-class UserForm extends Component {
+class SignUpForm extends Component {
   state = {
     user: {
       name: "",
@@ -51,69 +51,9 @@ class UserForm extends Component {
     });
   };
 
-  isFormValid = () => {
-    const errors = [];
-
-    if (this.isFieldEmpty()) {
-      errors.push({ message: "Fill in the empty fields. " });
-    }
-
-    if (this.isEmailValid()) {
-      errors.push({ message: "Your email is incorrect" });
-    }
-
-    if (this.isPhoneValid()) {
-      errors.push({
-        message:
-          "Your phone is incorrect. Must contain at least 4 characters but no more than 12 characters. ",
-      });
-    }
-
-    if (errors.length) {
-      this.setState({
-        errors: errors,
-      });
-      return false;
-    }
-    return true;
-  };
-
-  isFieldEmpty = () => {
-    const {
-      name,
-      surname,
-      email,
-      phone,
-      dateOfBirth,
-      gender,
-    } = this.state.user;
-    return (
-      !name.length ||
-      !surname.length ||
-      !email.length ||
-      !phone.length ||
-      !dateOfBirth.length ||
-      !gender.length
-    );
-  };
-
-  isEmailValid = () => {
-    return !this.state.user.email.includes("@");
-  };
-
-  isPhoneValid = () => {
-    return (
-      this.state.user.phone.length < 4 || this.state.user.phone.length > 12
-    );
-  };
-
   handleSubmit = (e) => {
     e.preventDefault();
-    const isValid = this.isFormValid();
-
-    if (!isValid) {
-      return;
-    }
+    // const isValid = this.isFormValid();
     setLocalStorage("user", this.state.user);
     this.props.updateUser(this.state.user);
   };
@@ -244,4 +184,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateUser })(UserForm);
+export default connect(mapStateToProps, { updateUser })(SignUpForm);
