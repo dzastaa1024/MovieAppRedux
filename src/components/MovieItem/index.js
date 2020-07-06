@@ -12,7 +12,7 @@ const MovieItem = ({ movie, openModal, selectMovie, sidebarNews }) => {
       }}
     >
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
-      <Title>{movie.title}</Title>
+      <Title sidebarNews={sidebarNews}>{movie.title}</Title>
       {sidebarNews ? (
         <ReleaseDate sidebarNews={sidebarNews}>
           {movie.release_date}
