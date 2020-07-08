@@ -23,6 +23,7 @@ const Title = styled.p`
     props.sidebarNews &&
     css`
       font-size: 1.5rem;
+      margin-left: 20px;
     `}
 `;
 
@@ -41,6 +42,7 @@ const ReleaseDate = styled.p`
       color: white;
       padding: 1rem 0;
       font-size: 1rem;
+      margin-left: 20px;
     `}
 `;
 
