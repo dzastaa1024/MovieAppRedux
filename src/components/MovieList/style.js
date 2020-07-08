@@ -31,6 +31,7 @@ const Title = styled.p`
   padding-bottom: 2rem;
   color: #fff;
   padding-left: 2rem;
+
   ${(props) =>
     props.sidebarNews &&
     css`
