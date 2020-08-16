@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Wrapper,
   Container,
@@ -12,15 +12,15 @@ import {
   ModalBtn,
   Action,
 } from "./style";
-
+import {useSelector, useDispatch} from 'react-redux';
 import Modal from "../index";
-import { connect } from "react-redux";
 import { addMovieToWatchPage, closeModal } from "../../../actions";
 
-class MovieModal extends Component {
-  renderContent() {
-    const { clikedMovie, addMovieToWatchPage, closeModal } = this.props;
+const MovieModal = () => {
+  const clikedMovie = useSelector((state)=> state.clikedMovie);
+  const dispatch = useDispatch();
 
+  const renderContent = () => {
     return (
       <Wrapper>
         <Container>
@@ -39,8 +39,8 @@ class MovieModal extends Component {
         <Action>
           <ModalBtn
             onClick={() => {
-              addMovieToWatchPage(clikedMovie);
-              closeModal();
+              dispatch(addMovieToWatchPage(clikedMovie));
+              dispatch(closeModal());
             }}
           >
             Add to
@@ -53,24 +53,15 @@ class MovieModal extends Component {
     );
   }
 
-  render() {
     return (
       <div>
         <Modal
-          modalContent={this.renderContent()}
-          closeModal={this.props.closeModal}
+          modalContent={renderContent()}
+          closeModal={closeModal}
         />
       </div>
     );
-  }
+  
 }
 
-const mapStateToProps = (state) => {
-  return {
-    clikedMovie: state.clikedMovie,
-  };
-};
-
-export default connect(mapStateToProps, { addMovieToWatchPage, closeModal })(
-  MovieModal
-);
+export default MovieModal;
