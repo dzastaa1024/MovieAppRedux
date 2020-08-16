@@ -1,14 +1,15 @@
 import React from "react";
 import { Item, Image, Title, Average, ReleaseDate, GoldStar } from "./style";
-import { connect } from "react-redux";
+import {useDispatch} from 'react-redux';
 import { openModal, selectMovie } from "../../actions";
 
-const MovieItem = ({ movie, openModal, selectMovie, sidebarNews }) => {
+const MovieItem = ({ movie, sidebarNews }) => {
+  const dispatch = useDispatch();
   return (
     <Item
       onClick={() => {
-        openModal();
-        selectMovie(movie);
+        dispatch(openModal());
+        dispatch(selectMovie(movie));
       }}
     >
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
@@ -27,4 +28,4 @@ const MovieItem = ({ movie, openModal, selectMovie, sidebarNews }) => {
   );
 };
 
-export default connect(null, { openModal, selectMovie })(MovieItem);
+export default MovieItem;
