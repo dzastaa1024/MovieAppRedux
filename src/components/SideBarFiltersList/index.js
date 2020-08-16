@@ -13,18 +13,16 @@ import {
   toggleGenreFilters,
   toggleLanguageFilters,
 } from "../../actions/FILTERS_ACTION";
-import { connect } from "react-redux";
-
+import {useSelector, useDispatch} from 'react-redux';
 import Scroll from "../Scroll";
 
 const SideBarFiltersList = ({
   filters,
-  activeGenreFilter,
   filterKey,
-  title,
-  toggleGenreFilters,
-  toggleLanguageFilters,
+  title
 }) => {
+  const activeGenreFilter = useSelector(state => state.activeGenreFilter);
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <Title>{title} </Title>
@@ -36,9 +34,9 @@ const SideBarFiltersList = ({
                   <Filter
                     onClick={() => {
                       if (filterKey === "genres") {
-                        toggleGenreFilters(filter.id);
+                        dispatch(toggleGenreFilters(filter.id));
                       } else {
-                        toggleLanguageFilters(filter.iso_639_1);
+                        dispatch(toggleLanguageFilters(filter.iso_639_1));
                       }
                     }}
                     key={filter.id || filter.iso_639_1}
@@ -69,13 +67,5 @@ const SideBarFiltersList = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    activeGenreFilter: state.activeGenreFilter,
-  };
-};
 
-export default connect(mapStateToProps, {
-  toggleGenreFilters,
-  toggleLanguageFilters,
-})(SideBarFiltersList);
+export default SideBarFiltersList;
