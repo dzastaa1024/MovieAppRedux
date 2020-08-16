@@ -8,7 +8,7 @@ import {
   ModalAction,
 } from "./style";
 
-const Modal = ({ closeModal, modalContent, s }) => {
+const Modal = ({ closeModal, modalContent }) => {
   return ReactDOM.createPortal(
     <Dimmer onClick={closeModal}>
       <ModalBody onClick={(e) => e.stopPropagation()}>
