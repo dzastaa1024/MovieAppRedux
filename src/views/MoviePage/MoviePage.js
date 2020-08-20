@@ -5,8 +5,8 @@ import { fetchPopularMovies, fetchMoviesByKeyword } from "../../actions";
 import {
   getMoviesByKeywordSelector,
   getKeywordSelector,
-  getActiveGenreFilterSelectors,
-  getActiveLanguageFilterSelectors,
+  getActiveGenreFilterSelector,
+  getActiveLanguageFilterSelector,
   getPopularMoviessSelector,
 } from "../../reducers";
 
@@ -71,8 +71,8 @@ const mapStateToProps = (state) => {
     moviesByKeyword: getMoviesByKeywordSelector(state),
     keyword: getKeywordSelector(),
     isModal: state.isModal,
-    activeGenreFilter: getActiveGenreFilterSelectors(state),
-    activeLanguageFilter: getActiveLanguageFilterSelectors(state),
+    activeGenreFilter: getActiveGenreFilterSelector(state),
+    activeLanguageFilter: getActiveLanguageFilterSelector(state),
   };
 };
 

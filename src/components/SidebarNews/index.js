@@ -4,11 +4,14 @@ import { fetchMoviesUpcoming } from "../../actions/index";
 
 import MovieList from "../MovieList";
 import Scroll from "../Scroll";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const SidebarNews = ({ upcomingMovies, fetchMoviesUpcoming }) => {
+const SidebarNews = () => {
+  const upcomingMovies = useSelector(state => state.dataApi.upcomingMovies);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchMoviesUpcoming();
+    dispatch(fetchMoviesUpcoming());
   }, []);
 
   // componentDidMount() {
@@ -27,10 +30,4 @@ const SidebarNews = ({ upcomingMovies, fetchMoviesUpcoming }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    upcomingMovies: state.dataApi.upcomingMovies,
-  };
-};
-
-export default connect(mapStateToProps, { fetchMoviesUpcoming })(SidebarNews);
+export default SidebarNews;
