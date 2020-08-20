@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { setLocalStorage } from "../../localStorage/localStorage";
-import { connect } from "react-redux";
+import {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../actions/userActions";
 
 import {
@@ -14,86 +15,113 @@ import {
   Label,
 } from "./style";
 
-class SignUpForm extends Component {
-  state = {
-    user: {
-      name: "",
-      surname: "",
-      email: "",
-    },
-    errors: [],
-  };
-
-  componentDidMount() {
-    if (this.props.user) {
-      this.props.history.push("/");
-    }
+const SignUpForm = (props) => {
+  const userDeatils = {
+    name: "",
+    surname: "",
+    email: "",
   }
 
-  handleChange = (e) => {
-    this.setState({
-      user: {
-        ...this.state.user,
+  const signUser =  useSelector(state => state.user);
+  const dispatch =  useDispatch();
+
+  const [user, setUser] = useState(userDeatils);
+  const [errors, setErrors] = useState([]);
+
+  // state = {
+  //   user: {
+  //     name: "",
+  //     surname: "",
+  //     email: "",
+  //   },
+  //   errors: [],
+  // };
+
+  useEffect(() => {
+        if (signUser) {
+      props.history.push("/");
+    }
+  }, [])
+
+  // componentDidMount() {
+  //   if (signUser) {
+  //     props.history.push("/");
+  //   }
+  // }
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log('value', e.target.value);
+    setUser((prevState)=>{
+      return {
+        ...prevState,
         [e.target.name]: e.target.value,
-      },
-      errors: [],
-    });
+      }
+    })
+      setErrors([]);
+
+    // this.setState({
+    //   user: {
+    //     ...this.state.user,
+    //     [e.target.name]: e.target.value,
+    //   },
+    //   errors: [],
+    // });
   };
 
-  isFormValid = () => {
+  const isFormValid = () => {
     const errors = [];
 
-    if (this.isFiledEmpty()) {
+    if (isFiledEmpty()) {
       errors.push({ message: "Fill in the empty fields." });
     }
 
-    if (this.isEmailValid()) {
+    if (isEmailValid()) {
       errors.push({ message: "Your emial is incorrect." });
     }
 
     if (errors.length) {
-      this.setState({
-        errors: errors,
-      });
+      setErrors(errors);
+      // this.setState({
+      //   errors: errors,
+      // });
       return false;
     }
 
     return true;
   };
 
-  isEmailValid = () => {
-    return !this.state.user.email.includes("@");
+  const isEmailValid = () => {
+    return !user.email.includes("@");
   };
 
-  isFiledEmpty = () => {
-    const { name, surname, email } = this.state.user;
+  const isFiledEmpty = () => {
+    const { name, surname, email } = user;
     return !name.length || !surname.length || !email.length;
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const isValid = this.isFormValid();
+    const isValid = isFormValid();
 
     if (!isValid) {
       return;
     }
 
-    setLocalStorage("user", this.state.user);
-    this.props.addUser(this.state.user);
+    setLocalStorage("user", user);
+    dispatch(addUser(user));
 
-    this.props.history.push("/");
+    props.history.push("/");
   };
 
-  render() {
-    const { name, surname, email } = this.state.user;
-
-    const { errors } = this.state;
+    const { name, surname, email } = user;
+    //const { errors } = this.state;
 
     return (
       <>
         <Wrapper>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <InputWrapper>
               <Label htmlFor="name">Name</Label>
               <Input
@@ -102,7 +130,7 @@ class SignUpForm extends Component {
                 type="text"
                 name="name"
                 id="name"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 autocomplete="new-password"
               />
             </InputWrapper>
@@ -114,7 +142,7 @@ class SignUpForm extends Component {
                 type="text"
                 name="surname"
                 id="surname"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 autocomplete="new-password"
               />
             </InputWrapper>
@@ -126,7 +154,7 @@ class SignUpForm extends Component {
                 type="text"
                 name="email"
                 id="email"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 autocomplete="new-password"
               />
             </InputWrapper>
@@ -141,13 +169,6 @@ class SignUpForm extends Component {
         </Wrapper>
       </>
     );
-  }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps, { addUser })(SignUpForm);
+export default SignUpForm;
