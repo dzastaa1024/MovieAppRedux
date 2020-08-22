@@ -11,7 +11,7 @@ import {
   UserIcon,
   Picture,
 } from "./style";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const menuItems = [
   { btnText: "Movies", to: "/movies" },
@@ -19,25 +19,17 @@ const menuItems = [
   { btnText: "WatchList", to: "/watchlists" },
 ];
 
-const TopBarList = ({ logOutUser, user }) => {
-  // state = {
-  //   isUserModal: false,
-  // };
-
+const TopBarList = () => {
   const [isUserModal, setIsUserModal] = useState(false);
+  const user = useSelector(state => getUserSelector(state));
+  const dispatch = useDispatch();
+
 
   const openModal = () => {
-    // this.setState({
-    //   isUserModal: true,
-    // });
-
     setIsUserModal(true);
   };
 
   const closeModal = () => {
-    // this.setState({
-    //   isUserModal: false,
-    // });
     setIsUserModal(false);
   };
 
@@ -68,16 +60,11 @@ const TopBarList = ({ logOutUser, user }) => {
         )}
       </Menu>
       {isUserModal ? (
-        <UserModal onClose={closeModal} logOut={logOutUser} />
+        <UserModal onClose={closeModal} logOut={dispatch(logOutUser)} />
       ) : null}
     </>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: getUserSelector(state),
-  };
-};
 
-export default connect(mapStateToProps, { logOutUser })(TopBarList);
+export default TopBarList;
