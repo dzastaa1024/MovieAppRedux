@@ -7,15 +7,18 @@ import {
   RightWrapper,
   CameraIcon,
 } from "./style";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateKeyword } from "../../actions";
 import { Link } from "react-router-dom";
 
 import TopBarList from "../TopBarList";
 
-const Topbar = ({ updateKeyword, keyword }) => {
+const Topbar = () => {
+  const keyword = useSelector(state => state.keyword);
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
-    updateKeyword(e.target.value);
+    dispatch(updateKeyword(e.target.value));
   };
 
   return (
@@ -39,12 +42,6 @@ const Topbar = ({ updateKeyword, keyword }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    keyword: state.keyword,
-  };
-};
 
-export default connect(mapStateToProps, {
-  updateKeyword,
-})(Topbar);
+
+export default Topbar;
