@@ -43,12 +43,6 @@ const SignUpForm = (props) => {
     }
   }, [])
 
-  // componentDidMount() {
-  //   if (signUser) {
-  //     props.history.push("/");
-  //   }
-  // }
-
   const handleChange = (e) => {
     e.persist();
     console.log('value', e.target.value);
@@ -60,13 +54,6 @@ const SignUpForm = (props) => {
     })
       setErrors([]);
 
-    // this.setState({
-    //   user: {
-    //     ...this.state.user,
-    //     [e.target.name]: e.target.value,
-    //   },
-    //   errors: [],
-    // });
   };
 
   const isFormValid = () => {
